@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{% block content %}
+
+<form action="{{ url_for('tasks') }}" method="POST">
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="description" cols="30" rows="10" placeholder="Description" required></textarea>
+    <input type="submit" value="create">
+</form>
+
+<hr>
+
+<div class="tasks">
+{% for task in tasks.tasks %}
+    <div class="task">
+        <div>
+            <h2 class="task">{{ task.title|capitalize }}</h2>
+            <button onclick="task_completed('{{ task.id }}')" class="task">Completed</button>
+        </div>
+        <span class="task">{{ task.description }}</span>
+    </div>
+{%endfor%}
+</div>
+
+{% endblock %}
